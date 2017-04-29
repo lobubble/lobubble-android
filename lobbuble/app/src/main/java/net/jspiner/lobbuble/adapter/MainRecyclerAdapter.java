@@ -7,10 +7,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import net.jspiner.lobbuble.R;
+import net.jspiner.lobbuble.model.FriendResponse;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,9 +30,11 @@ import butterknife.ButterKnife;
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
 
     Context context;
+    ArrayList<FriendResponse.Data> dataList;
 
-    public MainRecyclerAdapter(Context context){
+    public MainRecyclerAdapter(Context context, ArrayList<FriendResponse.Data> dataList){
         this.context = context;
+        this.dataList = dataList;
     }
 
     public static int defaultHeight = 0;
@@ -33,6 +43,18 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @Bind(R.id.imv_profile_img)
+        ImageView imvProfile;
+
+        @Bind(R.id.tv_profile_name)
+        TextView tvName;
+
+        @Bind(R.id.tv_profile_age)
+        TextView tvAge;
+
+        @Bind(R.id.tv_profile_namelist)
+        TextView tvNameList;
 
         @Bind(R.id.pager_main_profile)
         ViewPager pagerMainProfile;
@@ -89,6 +111,17 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                 }
             });
 
+            FriendResponse.Data profileData = dataList.get(position);
+
+            Picasso.with(context)
+                    .load(profileData.picture)
+                    .resize(500,500)
+                    .centerCrop()
+                    .into(imvProfile);
+            tvName.setText(profileData.name);
+            tvAge.setText(""+(new Random().nextInt(3) + 20));
+            tvNameList.setText(profileData.name+"님의 친구 목록");
+
         }
     }
 
@@ -100,6 +133,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                 .inflate(R.layout.item_main_list, parent, false);
 
         ViewHolder holder = new ViewHolder(view);
+
         return holder;
     }
 
@@ -112,6 +146,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     @Override
     public int getItemCount() {
-        return 4;
+        return dataList.size();
     }
 }

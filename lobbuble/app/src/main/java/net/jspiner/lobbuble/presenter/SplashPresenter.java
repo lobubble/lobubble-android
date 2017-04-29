@@ -59,6 +59,12 @@ public class SplashPresenter implements SplashContract.Presenter {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 Prefer.set("accessToken", accessToken);
+                LoginResponse body = response.body();
+
+                Prefer.set("userId", body.id);
+                Prefer.set("userGender", body.gender);
+                Prefer.set("userName", body.name);
+                Prefer.set("userPicture", body.picture);
 
                 delayHandler.sendEmptyMessageDelayed(0,1500);
             }

@@ -12,6 +12,7 @@ import net.jspiner.lobbuble.R;
 import net.jspiner.lobbuble.adapter.MainRecyclerAdapter;
 import net.jspiner.lobbuble.contract.MainContract;
 import net.jspiner.lobbuble.fragment.base.BaseFragment;
+import net.jspiner.lobbuble.model.FriendResponse;
 import net.jspiner.lobbuble.presenter.MainPresenter;
 import net.jspiner.lobbuble.presenter.base.BasePresenter;
 
@@ -48,10 +49,8 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     }
 
     void init(){
-        recyclerAdapter = new MainRecyclerAdapter(getActivity());
 
-        recyclerMainList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerMainList.setAdapter(recyclerAdapter);
+        presenter.loadData();
     }
 
     @Override
@@ -64,4 +63,12 @@ public class MainFragment extends BaseFragment implements MainContract.View {
 
     }
 
+    @Override
+    public void updateList(FriendResponse response) {
+        recyclerAdapter = new MainRecyclerAdapter(getActivity(), response.data);
+
+        recyclerMainList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerMainList.setAdapter(recyclerAdapter);
+
+    }
 }

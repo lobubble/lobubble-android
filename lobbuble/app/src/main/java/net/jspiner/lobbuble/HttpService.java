@@ -1,5 +1,6 @@
 package net.jspiner.lobbuble;
 
+import net.jspiner.lobbuble.model.FriendResponse;
 import net.jspiner.lobbuble.model.LoginResponse;
 
 import retrofit2.Call;
@@ -15,6 +16,11 @@ public interface HttpService {
 
     @GET("/api/v1/login")
     Call<LoginResponse> login(
-        @Query("access_token") String access_token
+        @Query("access_token") String accessToken
+    );
+
+    @GET("/api/v1/getFriendList")
+    Call<FriendResponse> getFriendList(
+            @Query("access_token") String accessToken
     );
 }

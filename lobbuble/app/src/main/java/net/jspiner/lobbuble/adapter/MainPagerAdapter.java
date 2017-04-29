@@ -30,9 +30,17 @@ public class MainPagerAdapter extends PagerAdapter {
 
     class ViewHolder{
 
-        public ViewHolder(View view){
+        public ViewHolder(View view, int position){
             ButterKnife.bind(this, view);
 
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                }
+            });
         }
     }
 
@@ -48,7 +56,7 @@ public class MainPagerAdapter extends PagerAdapter {
 
         view = inflater.inflate(R.layout.item_pager_profile, null);
 
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view, position);
 
         container.addView(view);
         return view;
