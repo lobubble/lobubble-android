@@ -14,4 +14,5 @@ before_install:
 - chmod +rx lobbuble/app
 skip_cleanup: true
 script:
-- ./lobbuble/gradlew clean build
+- cd lobbuble
+- ./gradlew clean build
