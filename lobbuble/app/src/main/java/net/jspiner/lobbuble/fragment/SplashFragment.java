@@ -2,11 +2,19 @@ package net.jspiner.lobbuble.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -15,6 +23,7 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import net.jspiner.lobbuble.activity.MainActivity;
 import net.jspiner.lobbuble.R;
 import net.jspiner.lobbuble.contract.SplashContract;
 import net.jspiner.lobbuble.fragment.base.BaseFragment;
@@ -30,6 +39,12 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
 
     @Bind(R.id.fblogin_splash)
     LoginButton loginButton;
+
+    @Bind(R.id.imv_splash_logo)
+    ImageView imvLogo;
+
+    @Bind(R.id.linear_loading)
+    LinearLayout linearLoading;
 
     CallbackManager callbackManager;
 
@@ -74,13 +89,15 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
 
                 String loginToken = loginResult.getAccessToken().getToken();
                 Log.d(TAG, "token : " + loginToken);
+
+                presenter.onFbLoginSuccess(loginResult);
             }
 
             @Override
             public void onCancel() {
                 Log.d(TAG, "onCancel");
 
-
+                presenter.onFbLoginCancel();
             }
 
             @Override
@@ -88,10 +105,36 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
                 Log.d(TAG, "onError");
                 Log.e(TAG, "error msg : " + error.getMessage());
 
+                presenter.onFbLoginError(error);
             }
         });
 
+        splashDelayHandler.sendEmptyMessageDelayed(0, 1500);
+
     }
+
+    Handler splashDelayHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            TranslateAnimation animation = new TranslateAnimation(
+                    Animation.RELATIVE_TO_SELF, 0f,
+                    Animation.RELATIVE_TO_SELF, 0f,
+                    Animation.RELATIVE_TO_SELF, 0f,
+                    Animation.RELATIVE_TO_SELF, -1.2f
+            );
+            animation.setDuration(800);
+            animation.setFillAfter(true);
+            imvLogo.startAnimation(animation);
+
+            loginButton.setVisibility(View.VISIBLE);
+            AlphaAnimation fadeOut = new AlphaAnimation(0f, 1f);
+            fadeOut.setStartOffset(200);
+            fadeOut.setDuration(600);
+
+            loginButton.startAnimation(fadeOut);
+
+        }
+    };
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -102,5 +145,23 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
     @Override
     public void showToast(String text) {
         Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void startMainActivity() {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+
+        getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+    }
+
+    @Override
+    public void changeLoadingState(boolean isLoading) {
+        if(isLoading){
+            linearLoading.setVisibility(View.VISIBLE);
+        }
+        else{
+            linearLoading.setVisibility(View.GONE);
+        }
     }
 }

@@ -17,15 +17,16 @@ public class SplashContract {
     public interface View extends BaseView<Presenter>{
         void onActivityResult(int requestCode, int resultCode, Intent data);
 
-        void showToast(String text);
+        void startMainActivity();
+        void changeLoadingState(boolean isLoading);
     }
 
     public interface Presenter extends BasePresenter {
         void onActivityResult(int requestCode, int resultCode, Intent data);
 
         void onFbLoginSuccess(LoginResult loginResult);
-        void onFbLoginError();
-        void onFbLoginCancel(FacebookException error);
+        void onFbLoginError(FacebookException error);
+        void onFbLoginCancel();
     }
 
 }
