@@ -79,4 +79,16 @@ public class DetailActivity extends BaseActivity{
         Log.d(TAG, "data : " + new Gson().toJson(data));
         detailFragment.updateData(data);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

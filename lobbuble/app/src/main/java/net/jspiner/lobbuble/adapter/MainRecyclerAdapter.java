@@ -109,7 +109,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                         if(i>=pagerMainProfile.getChildCount()) continue;
 
                         View view = pagerMainProfile.getChildAt(i).findViewById(R.id.imv_profile);
-                        float padding = (Math.abs(position - i + positionOffset + 2))*50;
+                        float padding = (Math.abs(position - i + positionOffset + 1))*140;
                         if(padding>240) padding = 240;
                         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
 
@@ -118,7 +118,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                             if (defaultHeight == 0) {
                                 defaultHeight = params.height;
                             }
-                            params.height = (int) (250 - padding);
+                            params.height = (int) (400 - padding);
                             view.setLayoutParams(params);
                         }
                         c++;
@@ -128,7 +128,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
                 @Override
                 public void onPageSelected(int position) {
-
+                    tvName.setText( ((MainPagerAdapter) pagerMainProfile.getAdapter()).getItem(position +1).name);
                 }
 
                 @Override

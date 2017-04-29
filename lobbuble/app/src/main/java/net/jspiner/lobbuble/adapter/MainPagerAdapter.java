@@ -1,7 +1,10 @@
 package net.jspiner.lobbuble.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -52,19 +55,42 @@ public class MainPagerAdapter extends PagerAdapter {
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(context, DetailActivity.class);
-                    intent.putExtra("data", new Gson().toJson(dataList[position]));
-                    context.startActivity(intent);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("버블 사용 확인");
+                    builder.setMessage("상대의 프로필을 보기 위하여 버블 1개를 사용하시겠습니까?");
+                    builder.setPositiveButton("구입", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                    ((Activity)context).overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+                                    Intent intent = new Intent(context, DetailActivity.class);
+                                    intent.putExtra("data", new Gson().toJson(dataList[position]));
+                                    context.startActivity(intent);
+
+                                    ((Activity)context).overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+                                }
+                            }
+                    );
+                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.show();
+
                 }
             });
 
             Picasso.with(context)
                     .load(dataList[position].picture)
-                    .fit()
+                    .resize(500,500)
+                    .centerCrop()
                     .into(imvProfile);
         }
+    }
+
+    public RecoResponse.Data getItem(int position){
+        return dataList[position];
     }
 
     @Override
@@ -92,7 +118,7 @@ public class MainPagerAdapter extends PagerAdapter {
 
     @Override
     public float getPageWidth(int position) {
-        return 0.2f;
+        return 1/3f;
     }
 
 

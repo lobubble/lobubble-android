@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import net.jspiner.lobbuble.R;
 import net.jspiner.lobbuble.activity.DetailActivity;
+import net.jspiner.lobbuble.model.ImageResponse;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,11 +28,13 @@ public class DetailPagerAdapter extends PagerAdapter {
     LayoutInflater inflater;
     Context context;
     String picture;
+    ImageResponse.Data[] data;
 
-    public DetailPagerAdapter(Context context, LayoutInflater inflater, String picture){
+    public DetailPagerAdapter(Context context, LayoutInflater inflater, String picture, ImageResponse.Data[] data){
         this.context = context;
         this.inflater = inflater;
         this.picture = picture;
+        this.data = data;
     }
 
     class ViewHolder{
@@ -43,18 +46,29 @@ public class DetailPagerAdapter extends PagerAdapter {
         public ViewHolder(View view, int position){
             ButterKnife.bind(this, view);
 
-            Picasso.with(context)
-                    .load(picture)
-                    .resize(500,500)
-                    .centerCrop()
-                    .into(imvDetail);
+            if (data.length -1 < position){
+
+                Picasso.with(context)
+                        .load(R.drawable.img_1)
+                        .resize(500, 500)
+                        .centerCrop()
+                        .into(imvDetail);
+
+            }
+            else {
+                Picasso.with(context)
+                        .load(/*"https://lobubble.azurewebsites.net" + */data[position].file)
+                        .resize(500, 500)
+                        .centerCrop()
+                        .into(imvDetail);
+            }
 
         }
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return data.length;
     }
 
     @Override

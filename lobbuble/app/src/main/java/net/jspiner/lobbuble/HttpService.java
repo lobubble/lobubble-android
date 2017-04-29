@@ -1,6 +1,7 @@
 package net.jspiner.lobbuble;
 
 import net.jspiner.lobbuble.model.FriendResponse;
+import net.jspiner.lobbuble.model.ImageResponse;
 import net.jspiner.lobbuble.model.LoginResponse;
 import net.jspiner.lobbuble.model.RecoResponse;
 
@@ -30,5 +31,10 @@ public interface HttpService {
             @Query("access_token") String accessToken,
             @Query("gender") String gender,
             @Query("id") String id
+    );
+
+    @GET("/api/v1/getCustomImage")
+    Call<ImageResponse.Data[]> getCustomImage(
+        @Query("id") String id
     );
 }
