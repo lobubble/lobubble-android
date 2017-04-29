@@ -4,6 +4,10 @@ repositories {
     mavenCentral()
 }
 
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
+}
 
 
 android {
@@ -11,7 +15,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "net.jspiner.lobbuble"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -37,7 +41,6 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-
 
     testCompile 'junit:junit:4.12'
 }
