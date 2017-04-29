@@ -1,4 +1,4 @@
-package net.jspiner.lobbuble.presenter;
+package net.jspiner.lobbuble.presenter.base;
 
 /**
  * Created by jspiner on 2017. 4. 29..

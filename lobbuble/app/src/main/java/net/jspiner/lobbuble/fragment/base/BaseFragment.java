@@ -1,6 +1,7 @@
-package net.jspiner.lobbuble.fragment;
+package net.jspiner.lobbuble.fragment.base;
 
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
 
 /**
  * Created by jspiner on 2017. 4. 29..
