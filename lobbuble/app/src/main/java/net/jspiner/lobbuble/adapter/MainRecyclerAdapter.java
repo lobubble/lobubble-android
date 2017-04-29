@@ -12,16 +12,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import net.jspiner.lobbuble.Prefer;
 import net.jspiner.lobbuble.R;
+import net.jspiner.lobbuble.Util;
 import net.jspiner.lobbuble.model.FriendResponse;
+import net.jspiner.lobbuble.model.RecoResponse;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by jspiner on 2017. 4. 29..
@@ -65,10 +72,29 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(Context context, int position){
+        void bind(final Context context, int position){
 
-            final MainPagerAdapter adapter = new MainPagerAdapter(context, LayoutInflater.from(context));
-            pagerMainProfile.setAdapter(adapter);
+
+            Util.getService().getMyRecommend(
+                    Prefer.get("accessToken",""),
+                    "all",
+                    dataList.get(position).id
+            ).enqueue(new Callback<RecoResponse.Data[]>() {
+                @Override
+                public void onResponse(Call<RecoResponse.Data[]> call, Response<RecoResponse.Data[]> response) {
+                    RecoResponse.Data[] body = response.body();
+
+                    Log.d(TAG, new Gson().toJson(body));
+
+                    final MainPagerAdapter adapter = new MainPagerAdapter(context, LayoutInflater.from(context), body);
+                    pagerMainProfile.setAdapter(adapter);
+                }
+
+                @Override
+                public void onFailure(Call<RecoResponse.Data[]> call, Throwable t) {
+                    Log.e(TAG,"error");
+                }
+            });
 
             pagerMainProfile.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override

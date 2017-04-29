@@ -26,10 +26,12 @@ public class DetailPagerAdapter extends PagerAdapter {
 
     LayoutInflater inflater;
     Context context;
+    String picture;
 
-    public DetailPagerAdapter(Context context, LayoutInflater inflater){
+    public DetailPagerAdapter(Context context, LayoutInflater inflater, String picture){
         this.context = context;
         this.inflater = inflater;
+        this.picture = picture;
     }
 
     class ViewHolder{
@@ -42,7 +44,7 @@ public class DetailPagerAdapter extends PagerAdapter {
             ButterKnife.bind(this, view);
 
             Picasso.with(context)
-                    .load(R.drawable.img_1)
+                    .load(picture)
                     .resize(500,500)
                     .centerCrop()
                     .into(imvDetail);

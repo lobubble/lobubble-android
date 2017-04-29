@@ -46,6 +46,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:text="서현"
+                            android:id="@+id/tv_detail_name"
                             android:textSize="20dp"
                             android:textColor="#ffffff"
                             android:textStyle="bold"
@@ -60,7 +61,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="수도권년제 | 학생"
+                            android:text="수도권4년제 | 학생"
                             android:textSize="15dp"
                             android:textColor="#ffffff"
                             android:layout_marginBottom="40dp"

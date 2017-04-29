@@ -6,11 +6,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import net.jspiner.lobbuble.R;
 import net.jspiner.lobbuble.adapter.DetailPagerAdapter;
 import net.jspiner.lobbuble.contract.DetailContract;
 import net.jspiner.lobbuble.fragment.base.BaseFragment;
+import net.jspiner.lobbuble.model.RecoResponse;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,6 +25,9 @@ public class DetailFragment extends BaseFragment implements DetailContract.View 
 
     @Bind(R.id.pager_detail_profile)
     ViewPager pagerDetailProfile;
+
+    @Bind(R.id.tv_detail_name)
+    TextView tvName;
 
     DetailPagerAdapter pagerAdapter;
 
@@ -56,12 +61,21 @@ public class DetailFragment extends BaseFragment implements DetailContract.View 
 
     void init(){
 
-        pagerAdapter = new DetailPagerAdapter(getContext(), LayoutInflater.from(getContext()));
+        tvName.setText(data.name);
+
+        pagerAdapter = new DetailPagerAdapter(getContext(), LayoutInflater.from(getContext()), data.picture);
 
         pagerDetailProfile.setAdapter(pagerAdapter);
 
         pagerDetailProfile.setClipToPadding(false);
         pagerDetailProfile.setPageMargin(120);
         pagerDetailProfile.setPadding(160,0,160,0);
+    }
+
+    RecoResponse.Data data;
+    @Override
+    public void updateData(RecoResponse.Data data) {
+
+        this.data = data;
     }
 }

@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+
+import com.google.gson.Gson;
 
 import net.jspiner.lobbuble.R;
 import net.jspiner.lobbuble.activity.base.BaseActivity;
 import net.jspiner.lobbuble.fragment.DetailFragment;
 import net.jspiner.lobbuble.fragment.MainFragment;
+import net.jspiner.lobbuble.model.RecoResponse;
 import net.jspiner.lobbuble.presenter.DetailPresenter;
 import net.jspiner.lobbuble.presenter.MainPresenter;
 
@@ -69,5 +73,10 @@ public class DetailActivity extends BaseActivity{
         presenter = new DetailPresenter(
                 detailFragment
         );
+
+        RecoResponse.Data data = new Gson().fromJson(getIntent().getStringExtra("data"), RecoResponse.Data.class);
+
+        Log.d(TAG, "data : " + new Gson().toJson(data));
+        detailFragment.updateData(data);
     }
 }

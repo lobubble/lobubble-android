@@ -9,9 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import net.jspiner.lobbuble.R;
 import net.jspiner.lobbuble.activity.DetailActivity;
+import net.jspiner.lobbuble.model.RecoResponse;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,16 +31,21 @@ public class MainPagerAdapter extends PagerAdapter {
 
     LayoutInflater inflater;
     Context context;
+    RecoResponse.Data[] dataList;
 
-    public MainPagerAdapter(Context context, LayoutInflater inflater){
+    public MainPagerAdapter(Context context, LayoutInflater inflater, RecoResponse.Data[] dataList){
         this.context = context;
         this.inflater = inflater;
+        this.dataList = dataList;
     }
 
 
     class ViewHolder{
 
-        public ViewHolder(View view, int position){
+        @Bind(R.id.imv_profile)
+        ImageView imvProfile;
+
+        public ViewHolder(View view, final int position){
             ButterKnife.bind(this, view);
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -43,17 +53,23 @@ public class MainPagerAdapter extends PagerAdapter {
                 public void onClick(View v) {
 
                     Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("data", new Gson().toJson(dataList[position]));
                     context.startActivity(intent);
 
                     ((Activity)context).overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
                 }
             });
+
+            Picasso.with(context)
+                    .load(dataList[position].picture)
+                    .fit()
+                    .into(imvProfile);
         }
     }
 
     @Override
     public int getCount() {
-        return 50;
+        return dataList.length;
     }
 
     @Override
