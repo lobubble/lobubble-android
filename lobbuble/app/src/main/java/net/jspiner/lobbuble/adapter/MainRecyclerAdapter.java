@@ -67,7 +67,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
         void bind(Context context, int position){
 
-            final MainPagerAdapter adapter = new MainPagerAdapter(LayoutInflater.from(context));
+            final MainPagerAdapter adapter = new MainPagerAdapter(context, LayoutInflater.from(context));
             pagerMainProfile.setAdapter(adapter);
 
             pagerMainProfile.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

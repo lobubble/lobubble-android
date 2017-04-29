@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import net.jspiner.lobbuble.R;
 import net.jspiner.lobbuble.activity.DetailActivity;
@@ -17,51 +19,47 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by jspiner on 2017. 4. 29..
+ * Created by jspiner on 2017. 4. 30..
  */
 
-public class MainPagerAdapter extends PagerAdapter {
-
-    public final String TAG = this.getClass().getSimpleName();
+public class DetailPagerAdapter extends PagerAdapter {
 
     LayoutInflater inflater;
     Context context;
 
-    public MainPagerAdapter(Context context, LayoutInflater inflater){
+    public DetailPagerAdapter(Context context, LayoutInflater inflater){
         this.context = context;
         this.inflater = inflater;
     }
 
-
     class ViewHolder{
+
+        @Bind(R.id.imv_detail_img)
+        ImageView imvDetail;
+
 
         public ViewHolder(View view, int position){
             ButterKnife.bind(this, view);
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            Picasso.with(context)
+                    .load(R.drawable.img_1)
+                    .resize(500,500)
+                    .centerCrop()
+                    .into(imvDetail);
 
-                    Intent intent = new Intent(context, DetailActivity.class);
-                    context.startActivity(intent);
-
-                    ((Activity)context).overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-                }
-            });
         }
     }
 
     @Override
     public int getCount() {
-        return 50;
+        return 5;
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        Log.d(TAG, "position " + position);
         View view = null;
 
-        view = inflater.inflate(R.layout.item_pager_profile, null);
+        view = inflater.inflate(R.layout.item_detailpager_item, null);
 
         ViewHolder holder = new ViewHolder(view, position);
 
@@ -75,15 +73,9 @@ public class MainPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public float getPageWidth(int position) {
-        return 0.2f;
-    }
-
-
-
-    @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
 
         container.removeView((View)object);
     }
+
 }

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="330dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:layout_marginBottom="35dp"
+                    android:layout_width="match_parent"
+                    android:background="#000000"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:layout_height="match_parent">
+                        <android.support.v4.view.ViewPager
+                            android:layout_width="match_parent"
+                            android:id="@+id/pager_detail_profile"
+                            android:layout_height="match_parent">
+
+                        </android.support.v4.view.ViewPager>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="bottom"
+                        android:layout_marginLeft="60dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="서현"
+                            android:textSize="20dp"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:text="서울 | 24세"
+                            android:textSize="15dp"
+                            android:textColor="#ffffff"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="수도권년제 | 학생"
+                            android:textSize="15dp"
+                            android:textColor="#ffffff"
+                            android:layout_marginBottom="40dp"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="56dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/ic_heart_white_36dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="56dp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:paddingLeft="20dp"
+                            android:text="안녕"
+                            android:layout_width="80dp"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:textSize="15dp"
+                            android:textColor="#000000"
+                            android:text="저는 24살이고 서울에 살아요"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:paddingLeft="20dp"
+                            android:text="학교/전공"
+                            android:layout_width="80dp"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:textSize="15dp"
+                            android:textColor="#000000"
+                            android:text="수도권 4년제 경영에서 공부했어요"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:paddingLeft="20dp"
+                            android:text="커리어"
+                            android:layout_width="80dp"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:textSize="15dp"
+                            android:textColor="#000000"
+                            android:text="저는 학생입니다."
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:paddingLeft="20dp"
+                            android:text="체형"
+                            android:layout_width="80dp"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:textSize="15dp"
+                            android:textColor="#000000"
+                            android:text="키는 167cm이구요 보통 체형 입니다."
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:paddingLeft="20dp"
+                            android:text="음주/흡연"
+                            android:layout_width="80dp"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:textSize="15dp"
+                            android:textColor="#000000"
+                            android:text="술은 마시지 않고요, 비흡연자 입니다."
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:paddingLeft="20dp"
+                            android:text="종교"
+                            android:layout_width="80dp"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:textSize="15dp"
+                            android:textColor="#000000"
+                            android:text="종교는 없습니다."
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:paddingLeft="20dp"
+                            android:text="성격"
+                            android:layout_width="80dp"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:textSize="15dp"
+                            android:textColor="#000000"
+                            android:text="저는 낙천적이고, 감성적이에요"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="85dp"
+                    android:layout_width="1dp"
+                    android:background="#ababab"
+                    android:layout_height="match_parent"/>
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
