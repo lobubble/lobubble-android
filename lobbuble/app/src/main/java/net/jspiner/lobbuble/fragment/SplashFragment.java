@@ -95,7 +95,7 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
 
                 presenter.onFbLoginCancel();
             }
-            
+
             @Override
             public void onError(FacebookException error) {
                 Log.d(TAG, "onError");
