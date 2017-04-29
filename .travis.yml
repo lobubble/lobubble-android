@@ -15,4 +15,4 @@ before_install:
 skip_cleanup: true
 script:
 - cd lobbuble
-- ./gradlew clean build
+- ./gradlew build
