@@ -18,6 +18,7 @@ public class SplashContract {
         void onActivityResult(int requestCode, int resultCode, Intent data);
 
         void startMainActivity();
+        void changeLoadingState(boolean isLoading);
     }
 
     public interface Presenter extends BasePresenter {

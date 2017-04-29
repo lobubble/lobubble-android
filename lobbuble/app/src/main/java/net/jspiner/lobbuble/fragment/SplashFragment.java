@@ -14,6 +14,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -41,6 +42,9 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
 
     @Bind(R.id.imv_splash_logo)
     ImageView imvLogo;
+
+    @Bind(R.id.linear_loading)
+    LinearLayout linearLoading;
 
     CallbackManager callbackManager;
 
@@ -149,5 +153,15 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
         startActivity(intent);
 
         getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+    }
+
+    @Override
+    public void changeLoadingState(boolean isLoading) {
+        if(isLoading){
+            linearLoading.setVisibility(View.VISIBLE);
+        }
+        else{
+            linearLoading.setVisibility(View.GONE);
+        }
     }
 }

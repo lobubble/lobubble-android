@@ -1,9 +1,13 @@
 package net.jspiner.lobbuble;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by jspiner on 2017. 4. 29..
@@ -12,6 +16,21 @@ import retrofit2.Retrofit;
 public class Util {
 
     private static HttpService httpService;
+
+
+    private static Gson gsonObject;
+
+    //gson
+    public static Gson getGson(){
+        if(gsonObject == null){
+
+            gsonObject = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .create();
+        }
+
+        return gsonObject;
+    }
 
     public static synchronized HttpService getService() {
         if(httpService == null){
@@ -26,6 +45,7 @@ public class Util {
                     new Retrofit.Builder()
                             .baseUrl("https://lobubble.azurewebsites.net/")
                             .client(client.build())
+                            .addConverterFactory(GsonConverterFactory.create(getGson()))
                             .build()
                             .create(HttpService.class);
 
