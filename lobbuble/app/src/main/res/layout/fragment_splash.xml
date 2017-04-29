@@ -6,23 +6,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:background="@color/colorPrimary"
         android:gravity="center_horizontal"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_marginTop="100dp"
-            android:background="#ff0000"
-            android:layout_width="100dp"
-            android:layout_height="100dp">
-
-        </LinearLayout>
+        <ImageView
+            android:layout_marginTop="220dp"
+            android:layout_width="170dp"
+            android:src="@drawable/main_logo"
+            android:id="@+id/imv_splash_logo"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"/>
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/fblogin_splash"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="200dp"
+            android:visibility="gone"
             android:layout_marginBottom="30dp" />
 
 
