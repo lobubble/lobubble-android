@@ -6,6 +6,5 @@ package net.jspiner.lobbuble.presenter.base;
 
 public interface BasePresenter {
 
-    void start();
 
 }
