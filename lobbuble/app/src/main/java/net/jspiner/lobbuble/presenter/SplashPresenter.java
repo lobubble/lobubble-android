@@ -22,12 +22,6 @@ public class SplashPresenter implements SplashContract.Presenter {
     }
 
     @Override
-    public void start() {
-
-    }
-
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         splashView.onActivityResult(requestCode, resultCode, data);
     }
@@ -35,6 +29,7 @@ public class SplashPresenter implements SplashContract.Presenter {
     @Override
     public void onFbLoginSuccess(LoginResult loginResult) {
         splashView.showToast("로그인을 성공하였습니다.");
+        splashView.startMainActivity();
     }
 
     @Override

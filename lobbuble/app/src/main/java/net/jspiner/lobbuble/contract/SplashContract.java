@@ -17,7 +17,7 @@ public class SplashContract {
     public interface View extends BaseView<Presenter>{
         void onActivityResult(int requestCode, int resultCode, Intent data);
 
-        void showToast(String text);
+        void startMainActivity();
     }
 
     public interface Presenter extends BasePresenter {

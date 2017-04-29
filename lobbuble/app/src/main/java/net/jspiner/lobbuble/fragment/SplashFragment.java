@@ -15,6 +15,7 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import net.jspiner.lobbuble.activity.MainActivity;
 import net.jspiner.lobbuble.R;
 import net.jspiner.lobbuble.contract.SplashContract;
 import net.jspiner.lobbuble.fragment.base.BaseFragment;
@@ -102,5 +103,11 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
     @Override
     public void showToast(String text) {
         Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void startMainActivity() {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
     }
 }
