@@ -24,8 +24,8 @@ public class SplashContract {
         void onActivityResult(int requestCode, int resultCode, Intent data);
 
         void onFbLoginSuccess(LoginResult loginResult);
-        void onFbLoginError();
-        void onFbLoginCancel(FacebookException error);
+        void onFbLoginError(FacebookException error);
+        void onFbLoginCancel();
     }
 
 }

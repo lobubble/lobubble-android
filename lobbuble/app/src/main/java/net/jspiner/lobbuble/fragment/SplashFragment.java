@@ -85,20 +85,23 @@ public class SplashFragment extends BaseFragment implements SplashContract.View{
 
                 String loginToken = loginResult.getAccessToken().getToken();
                 Log.d(TAG, "token : " + loginToken);
+
+                presenter.onFbLoginSuccess(loginResult);
             }
 
             @Override
             public void onCancel() {
                 Log.d(TAG, "onCancel");
 
-
+                presenter.onFbLoginCancel();
             }
-
+            
             @Override
             public void onError(FacebookException error) {
                 Log.d(TAG, "onError");
                 Log.e(TAG, "error msg : " + error.getMessage());
 
+                presenter.onFbLoginError(error);
             }
         });
 

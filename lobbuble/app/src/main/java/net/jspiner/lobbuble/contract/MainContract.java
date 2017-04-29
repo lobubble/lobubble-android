@@ -10,7 +10,7 @@ import net.jspiner.lobbuble.presenter.base.BasePresenter;
 public class MainContract {
 
 
-    public interface View extends BaseView<BasePresenter>{
+    public interface View extends BaseView<Presenter>{
 
     }
 

@@ -33,13 +33,13 @@ public class SplashPresenter implements SplashContract.Presenter {
     }
 
     @Override
-    public void onFbLoginError() {
+    public void onFbLoginError(FacebookException error) {
         splashView.showToast("로그인 에러가 발생하였습니다.");
 
     }
 
     @Override
-    public void onFbLoginCancel(FacebookException error) {
+    public void onFbLoginCancel() {
         splashView.showToast("로그인이 취소되었습니다.");
 
     }
