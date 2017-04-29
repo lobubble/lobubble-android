@@ -10,8 +10,8 @@ android:
   - extra-android-m2repository
   - extra-google-m2repository
 before_install:
-- chmod +x gradlew
-- chmod +rx app
+- chmod +x lobbuble/gradlew
+- chmod +rx lobbuble/app
 skip_cleanup: true
 script:
-- ./gradlew clean build
+- ./lobbuble/gradlew clean build
